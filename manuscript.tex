@@ -85,8 +85,6 @@
 
 %\makeatother
 
-\setcounter{secnumdepth}{6}
-
 % Document starts
 \begin{document}
 
@@ -94,8 +92,8 @@
 \title{On the Synchronization of Intermittently Powered Wireless Embedded Systems}
 
 \author{Kas{\i}m~Sinan~Y{\i}ld{\i}r{\i}m, Henko~Aantjes, Przemys{\l}a~Pawe{\l}czak and Amjad~Yousef~Majid
-
-\thanks{A preliminary version of this article was presented at the HLPC 2016 Workshop, Atlanta, GA, USA, April 2, 2016~\cite{hlpc2016}.}
+%
+\thanks{A preliminary version of this article was presented at the HLPC 2016 Workshop, Atlanta, GA, USA, April 2, 2016~\cite{hlpc2016}.}%
 \thanks{The authors are with the Embedded Software Group, Delft University of Technology, Mekelweg 4, 2628 CD Delft, The Netherlands (e-mail: \{k.s.yildirim, p.pawelczak, a.y.majid\}@tudelft.nl, h.aantjes@student.tudelft.nl).}}
 
 \markboth{IEEE Transactions on Communications}%
@@ -103,12 +101,11 @@
 
 \maketitle
 
-\vspace{-1cm}
 
 \begin{abstract}
 Battery-free computational RFID platforms, such as WISP (Wireless Identification and Sensing Platform), are intermittently-powered devices designed for replacing existing sensor networks. Accordingly, synchronization appears as one of the  crucial building blocks for collaborative and coordinated actions in these platforms. However, intermittent power leads to frequent loss of computational state and short-term clock frequency instability that makes synchronization challenging. In this article, we introduce WISP-Sync protocol that provides synchronization among WISP tags in the communication range of an RFID reader. WISP-Sync overcomes the aforementioned challenges by employing a Proportional-Integral (PI) controller-inspired algorithm which (i) is adaptive---reactive to short-term clock instabilities; (ii) requires only a few computation steps---suitable for limited harvested energy; and (iii) keeps a few variables to hold the synchronization state---minimum overhead to recover from power interrupts.	Evaluations in our testbed showed that WISP-Sync ensured an average synchronization error of approximately 1\,ms among the tags with an average energy overhead of 1.85\,$\mu$J per synchronization round.
 \end{abstract}
-
+%
 \begin{IEEEkeywords}Time Synchronization, Computational RFIDs, Wireless Identification and Sensing Platform (WISP).
 \end{IEEEkeywords}
 
@@ -597,8 +594,9 @@ In this article we explored synchronization scenarios between an RFID reader and
 \bibliography{IEEEabrv,references}
 
 \pagebreak
-%\appendix[Analysis of Algorithm~\ref{alg:sync}] 
-\appendix
+\pagenumbering{gobble}
+\appendices
+\section{Analysis of Algorithm~\ref{alg:sync}}
 
 We provide the synchronization conditions of Algorithm~\ref{alg:sync} and show that the synchronization will be established eventually. We need to mention that we follow similar calculation steps to the ones presented in the studies~\cite{pi2015,Yildirim:Gradient:2016}. However, since we use a different clock drift model in this article, i.e. Brownian motion rather than uniform distribution, the following  mathematical analysis is moderately different and more realistic as compared to those in the previous studies. 
 

@@ -1,0 +1,199 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath,amsfonts,amssymb,graphicx,color,psfrag}
+\usepackage[utf8]{inputenc}
+
+\usepackage{vmargin}
+\setmarginsrb{2.25cm}{2.25cm}{2.25cm}{2.25cm}
+         {12pt}{20pt}{12pt}{36pt}
+
+\usepackage{soul}
+
+\newcommand{\referee}[1]{{\item \color{OliveGreen} \emph{{#1}}}}
+
+\definecolor{OliveGreen}{rgb}{0.1,0.2,0.5}
+
+\newcommand{\response}[1]{{\color{blue} #1}}
+
+\newenvironment{editor}{%
+\textbf{\large Comments by the Editor}
+\begin{enumerate}%
+\renewcommand{\labelenumi}{\textbf{[E:\,\arabic{enumi}]}} %
+}{\pagebreak\end{enumerate}}
+
+\newcounter{refereeCounter}
+
+\newenvironment{responses}{%
+\refstepcounter{refereeCounter}%
+\textbf{\large Comments by Referee \therefereeCounter}
+\begin{enumerate}%
+\renewcommand{\labelenumi}{\textbf{[R\therefereeCounter :\,\arabic{enumi}]}} %
+}{\end{enumerate}}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\pagestyle{myheadings}
+\thispagestyle{empty}
+
+\markright{\footnotesize COMMAG-16-00166: {\sl Safe and Secure Wireless Power Transfer Networks ($\ldots$)}}
+
+\headsep 0.5cm
+
+\bigskip\bigskip
+
+\noindent{Dr. Tom Alexander\\
+Associate Editor\\
+IEEE Communications Magazine}
+
+\bigskip\bigskip
+
+\begin{flushright}
+Dr. Przemys{\l}aw Pawe{\l}czak \\
+Embedded Software Group \\ 
+Delft University of Technology \\ 
+Mekelweg 4, 2628 CD, Delft, The Netherlands \\
+E-mail: p.pawelczak@tudelft.nl\\
+Phone: +31 15 278 7491\\
+\end{flushright}
+
+\vspace*{2cm}
+
+\today
+\medskip
+
+
+\textbf{COMMAG-16-00166:} {\sl Safe and Secure Wireless Power Transfer Networks: Challenges and Opportunities in RF-Based Systems}
+
+\bigskip
+
+Dear Dr. Alexander,\\
+
+We would like to thank for handling our paper and providing a rapid review results. We are also grateful to the Reviewers for their substantial effort spent for evaluating our work. \\
+
+With this letter we provide our response to all comments of the Reviewers and the revised version of our paper. We look forward to hearing from you at the earliest and we would be happy to provide further clarifications and revisions if necessary. \\
+
+With best regards, \\
+
+in the name of all Authors---Dr. Przemys{\l}aw Pawe{\l}czak
+
+\pagebreak
+
+\begin{editor}
+\referee{The authors need to revise the paper accordingly and prepare for the second review. The reviewers mainly concerns in the following aspects. \\
+1. Clearly explain the motivation, describe clearly about the problem definition, and describe what new challenges address
+in this paper. \\
+2. Address the technical details mentioned by Reviewers 1 and 2. \\
+3. More results to present mentioned by Reviewer 3.
+}
+
+\response{
+	Fill
+}
+
+\end{editor}
+
+\begin{responses}
+ 
+\referee{This paper studies the problem of synchronization of computational RFID devices, which is a practically important issue. And the authors propose a lightweight synchronization method and implement it on the WISP tags. I still have the following concerns that require the authors to seriously consider. \\
+\\	
+In the Introduction part, the authors should clarify what type of synchronization they care. There are two types of synchronization of RFID communication: syn. between reader and tag; syn. among multiple tags. The COTS RFID devices exploit the EPC C1G2 standard, which uses framed slotted Aloha protocol to query tags. We found that the tag reading performance is very well. Hence, I think the synchronization among tags is not a big problem that hinder RFID communication. Hence, this study is not well motivated a least currently. }
+
+\response{
+	Fill
+}
+
+\referee{Also, there are another view to classify the synchronization problems: slot level synchronization (time frame is divided into slots) or bit level synchronization. Slot level synchronization has been studied for decades and is well addressed. The bit-level synchronization is not well investigated yet and attracts much attention from academic communities, e.g., the following three references. The authors should discuss and clarify whether they study the bit-level synchronization mentioned in these references. \\
+**Top-k Queries for Categorized RFID Systems, IEEE/ACM Transactions on Networking (TON), 2017. \\
+**Multi-category RFID Estimation, IEEE/ACM Transactions on Networking (TON), 2017. \\
+**Completely Pinpointing the Missing RFID Tags in a Time-efficient Way, IEEE Transactions on Computers (TC), 2015.}
+
+\response{
+	Fill
+}
+
+\referee{What if WISP tags are simultaneously covered by multiple readers. In this case, the readers are not synchronized themselves and may have different time-stamps. Then, how does the proposed method work?}
+
+\response{
+	Fill
+}
+
+\referee{The novelty of this paper is relatively limited because the proposed event-based reader-tag synchronization method is originated from previous literature. Moreover, the main part of the theoretical analytics is also from previous work [24,31]. Although the authors claimed that they use a different clock drift model in this article, i.e. Brownian motion rather than uniform distribution, I still this significantly reduces the theoretical depth of this paper. The authors should show what NEW challenges beyond previous work are addressed by this paper. }
+
+\response{
+	Fill
+}
+
+\end{responses}
+
+\begin{responses}
+	
+\referee{In this paper, the authors study the time synchronization problem in low-power backscatter systems, i.e., WISP. They point out the unique challenges in designing time synchronization algorithms for these energy-harvesting tags, and propose two synchronization protocols in response to these challenges. The proposed protocol is compatible with the default reader-to-tag communication protocol and consumes an ignorable amount of energy. The authors evaluate their proposed protocols through real-world experiments. \\
+\\
++: an interesting problem which has not been explored before. \\
++: the proposed protocols are simple yet look effective. \\
++: evaluating the proposed protocols with real-world experiments; \\
+\\		
+-: the motivation behind is not well explained; \\
+-: not sure the proposed protocol will work in large-scale deployment. \\
+\\
+My major concern about this paper is its motivation: I do agree with the authors that the time synchronization is important to the multi-hop backscatter networks, but I don’t think it is necessary for the single-hop network like the WISP networks. The ALOHA-type protocol has already synchronized the tags in nature. 
+}
+	
+\response{
+	Fill
+}
+	
+\referee{I’m not sure synchronizing tags through the command initiated by the 
+excitation generator (e.g., RFID reader) is feasible in real-world applications. This is because these energy-harvesting sensors can be charged within a very short range. Hence if the sensors are deployed sparsely, multiple excitation generators are needed, and it is thus important to synchronize these excitation generators as well. However, the authors did not consider this point.
+}
+	
+\response{
+	Fill
+}
+	
+\referee{Some questions about the technical parts: \\
+1): the authors claim that the fluctuating input voltage prevents short-term stability of the clock hardware and introduces significant clock drift in WISP. However, as far as I know, WISP uses a regulator to supply a constant 1.8V DC to power the WISP.}
+	
+\response{
+	Fill
+}
+	
+\referee{2): section 5.1, the authors observe a 1.89ms transmission delay. What does this delay account for? the in-air time should not be so long.
+}
+	
+\response{
+	Fill
+}
+	
+\end{responses}
+
+
+\begin{responses}
+	
+\referee{The authors have investigated the synchronization problem of RFID networks which consists of RFID readers and WISP tags. Several challenges of existing hardware platform and systems are identified and discussed. An event-based synchronization approach is proposed for solving the problem. A real demo system is implemented and used to evaluate the effectiveness of the proposed approach. The results show that the error of synchronization can be about 1ms and the energy overhead is about 1.85uJ. \\
+\\
+Generally, this paper is well written. It is a novel idea to improve the synchronization ability of RFID systems. Considering the emerging of internet of things, this work  is attractive.  The original version of this paper is published in a conference and this version includes sufficient additional contents for the journal. Therefore, I recommend this paper to be accepted after some revisions as follows:  \\
+\\
+1) It is better to simplify the descriptions of the challenges and existing works, especially some contents that are not directly related to the synchronization.}
+	
+\response{
+	Fill
+}
+
+\referee{2) It is better to report some results or discuss the performance of the proposed approach in the multi-hop networks, since the authors highlights the advantages of  multi-hop networks several times in the introduction.}
+	
+\response{
+	Fill
+}
+	
+\referee{3) The authors may consider to discuss a specific scenario that can use the proposed approach.}
+	
+\response{
+	Fill
+}
+
+\end{responses}
+
+
+\end{document}

@@ -92,7 +92,7 @@ in this paper. \\
 }
 
 \response{
-	Fill
+	We believe that we revised our article in accordance with the responses of the reviewers. Please see our responses. 
 }
 
 \end{editor}
@@ -104,7 +104,7 @@ in this paper. \\
 In the Introduction part, the authors should clarify what type of synchronization they care. There are two types of synchronization of RFID communication: syn. between reader and tag; syn. among multiple tags. The COTS RFID devices exploit the EPC C1G2 standard, which uses framed slotted Aloha protocol to query tags. We found that the tag reading performance is very well. Hence, I think the synchronization among tags is not a big problem that hinder RFID communication. Hence, this study is not well motivated a least currently.}
 
 \response{
-	Fill
+	Please also see \hyperref[R1:2]{[R1:2]} and \hyperref[R1:4]{[R1:4]}.
 }
 
 \referee{Also, there are another view to classify the synchronization problems: slot level synchronization (time frame is divided into slots) or bit level synchronization. Slot level synchronization has been studied for decades and is well addressed. The bit-level synchronization is not well investigated yet and attracts much attention from academic communities, e.g., the following three references. The authors should discuss and clarify whether they study the bit-level synchronization mentioned in these references. \\
@@ -116,7 +116,7 @@ In the Introduction part, the authors should clarify what type of synchronizatio
 Thanks to these comments, we noticed that we did not highlight the main difference of our work from \emph{bit-level synchronization} in the previous submission. Moreover, we thank the reviewer for providing the studies we have not cited in the previous submission.\newline
 As indicated by the reviewer, it is possible to exploit modulation properties of signals from the reader to tags (such as bit timing in FM0 modulation) in order to get the timing measurements of the regular patterns in the signal---i.e. bit-level synchronization. However, the objective of our work has the following fundamental differences as compared to these studies:
 \begin{itemize}
-	\item \textbf{Portability:} Bit-level synchronization relies on high-precision clock to obtain microsecond-precision timing measurements. Despite, in our work, we used we used the external 32\,KHz clock that can run in low-power standby mode and the \emph{higher-level} commands of the EPC-Gen 2 standard, rather than exploiting its low-level signal properties. Therefore, our approach is independent of how EPC Gen2 is implemented---providing a level of portability across different platforms.
+	\item \textbf{Portability:} Bit-level synchronization relies on high-precision clock to obtain microsecond-precision timing measurements. Despite, in our work, we used we used the external 32\,KHz clock that can run in low-power standby mode and the \emph{higher-level} commands of the EPC-Gen 2 standard, rather than exploiting its low-level signal properties. Therefore, our approach is independent of how EPC Gen2 is implemented---providing a level of portability across different platforms. However, our synchronization algorithms can also be integrated to bit-level synchronization.
 	\item \textbf{Explicit Clock:} Bit-level synchronization does not output an explicit clock value and it does not compensate for the clock drift. Rather, it uses offset compensation only and \emph{guard time} to reduce the effect of the clock drift. On the contrary, we provided time synchronization algorithms that compensate for the clock drift and provide an \emph{explicit} common time notion to CRFID applications.
 	\item \textbf{Energy Budget:} Due to marginal energy budgets, we proposed synchronization algorithms that require minimum number of computation steps and memory space.
 	\item \textbf{Power-Failures:} Providing synchronization service to the application layer requires to cope with power failures---which has not been investigated so far. To address this issue, we provided synchronization algorithms that can recover easily after power failures.
@@ -134,8 +134,13 @@ As we indicated in the introduction of the article, there are synchronization te
 \referee{The novelty of this paper is relatively limited because the proposed event-based reader-tag synchronization method is originated from previous literature. Moreover, the main part of the theoretical analytics is also from previous work [24,31]. Although the authors claimed that they use a different clock drift model in this article, i.e. Brownian motion rather than uniform distribution, I still this significantly reduces the theoretical depth of this paper. The authors should show what NEW challenges beyond previous work are addressed by this paper. }
 
 \response{
-	See our responses for \hyperref[R1:2]{[R1:2]}.
-	See our responses for \hyperref[R1:3]{R1:3}.
+As we indicated in our previous responses (see \hyperref[R1:1]{[R1:1]} and \hyperref[R1:2]{[R1:2]}), our article has the following novelties over the existing work in the literature:
+\begin{itemize}
+	\item Bit-level synchronization does not compensate for clock drift and it does not provide explicit time notion to the tags. In order to output a synchronized clock value, a time synchronization algorithm is required.
+	\item Since the energy budget of the tags are limited, synchronization approaches that require marginal number of computation and memory. This is challenging---the main motivation for applying a PI-controller based  synchronization for the first time in this domain.
+	\item Maintaining an explicit synchronized clock despite power failures has never been explored before in the field of CRFIDs. We also provided how our synchronization techniques overcome frequent power failures and provide a stable synchronized clock value.
+	\item  We also provided an in-depth theoretical analysis of the proposed synchronization techniques. As indicate by the reviewer, the main part of the analysis is from previous work. However, the previous analysis that assumes uniform distribution for the clock drifts was not realistic---the reason we changed the analysis to use Brownian motion. This modification did not change the proof structure but it significantly changed the individual steps of the proof---that led to different stead-state error expressions.
+\end{itemize}
 }
 
 \end{responses}
@@ -177,7 +182,7 @@ excitation generator (e.g., RFID reader) is feasible in real-world applications.
 }
 	
 \response{
-	Fill
+Since we used high-level properties of EPC Gen2 protocol, 
 }
 	
 \end{responses}

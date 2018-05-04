@@ -165,8 +165,9 @@ As we indicated in our previous responses (see \hyperref[R1:1]{[R1:1]} and \hype
 My major concern about this paper is its motivation: I do agree with the authors that the time synchronization is important to the multi-hop backscatter networks, but I don’t think it is necessary for the single-hop network like the WISP networks. The ALOHA-type protocol has already synchronized the tags in nature. 
 }
 	
-\response{
-	Fill
+\response{ 
+ The concern of this reviewer has been shared by also Reviewer 1. In our revised article, we provided a better motivation and highlighted the novelty of our work better.  \\
+ In the previous responses---please also see \hyperref[R1:1]{[R1:1]} and \hyperref[R1:2]{[R1:2]}---we mentioned that ALOHA-type protocol does not maintain an explicit clock value and does not implement a real synchronization algorithm. On the contrary, we provided novel synchronization mechanisms that enables tags to access synchronized time---this also enables sensor network-like data collection applications where tags collect and timestamp sensor readings that can be queried by the readers later. However, maintaining an explicit clock and ensuring synchronization is not trivial due to the marginal energy budgets of the tags and frequent power failures. These are the main challenges of our work and its novelty over existing studies. 
 }
 	
 \referee{I’m not sure synchronizing tags through the command initiated by the 
@@ -174,7 +175,7 @@ excitation generator (e.g., RFID reader) is feasible in real-world applications.
 }
 	
 \response{
-	Fill
+We thank the reviewer for raising this issue. We already answered this concern in the previous responses---please also see \hyperref[R1:3]{[R1:3]}. We would like to mention that there are already prior work that provides synchronization among the readers. Therefore, we can also employ these strategies in order to create a common time notion among the readers. In order to provide an explicit synchronized clock value to the WISP tags, an explicit reader-tag synchronization algorithm is required---which is the focus of our work.
 }
 	
 \referee{Some questions about the technical parts: \\
@@ -188,7 +189,7 @@ excitation generator (e.g., RFID reader) is feasible in real-world applications.
 }
 	
 \response{
-Since we used high-level properties of EPC Gen2 protocol, 
+In our article, we defined the \emph{transmission delay} as the time that passes between the start of the broadcast command from the reader and the receipt by the receiver node--- which is the major error source and composed of non-deterministic components. Since we used high-level properties of EPC Gen2 protocol, we could not use low-level timestamping mechanisms and our synchronization approaches suffer from big transmission delays.  The reason is that we do not know when the reader starts transmission after broadcast command is requested from the PC that controls the reader. During this process, the reader-side does not implement any timestamping mechanism and the delays are mainly dependent on the reader-side implementation of the EPC protocol.   
 }
 	
 \end{responses}
@@ -203,7 +204,7 @@ Generally, this paper is well written. It is a novel idea to improve the synchro
 1) It is better to simplify the descriptions of the challenges and existing works, especially some contents that are not directly related to the synchronization.}
 	
 \response{
-	Fill
+	We would like to thank the reviewer for his/her encouraging comments.
 }
 
 \referee{2) It is better to report some results or discuss the performance of the proposed approach in the multi-hop networks, since the authors highlights the advantages of  multi-hop networks several times in the introduction.}
@@ -215,7 +216,7 @@ Generally, this paper is well written. It is a novel idea to improve the synchro
 \referee{3) The authors may consider to discuss a specific scenario that can use the proposed approach.}
 	
 \response{
-	Fill
+	We provided a discussion 
 }
 
 \end{responses}

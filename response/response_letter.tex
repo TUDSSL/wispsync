@@ -40,15 +40,15 @@
 \pagestyle{myheadings}
 \thispagestyle{empty}
 
-\markright{\footnotesize COMMAG-16-00166: {\sl Safe and Secure Wireless Power Transfer Networks ($\ldots$)}}
+\markright{\footnotesize TMC-2017-11-0695: {\sl On the Synchronization of Computational RFIDs}}
 
 \headsep 0.5cm
 
 \bigskip\bigskip
 
-\noindent{Dr. Tom Alexander\\
-Associate Editor\\
-IEEE Communications Magazine}
+%\noindent{Marwan Krunz, EIC, and Kevin Almeroth, Associate EIC \\
+%	IEEE Transactions on Mobile Computing
+%}
 
 \bigskip\bigskip
 
@@ -67,11 +67,11 @@ Phone: +31 15 278 7491\\
 \medskip
 
 
-\textbf{COMMAG-16-00166:} {\sl Safe and Secure Wireless Power Transfer Networks: Challenges and Opportunities in RF-Based Systems}
+\textbf{TMC-2017-11-0695:} {\sl On the Synchronization of Computational RFIDs}
 
 \bigskip
 
-Dear Dr. Alexander,\\
+Dear Editor,\\
 
 We would like to thank for handling our paper and providing a rapid review results. We are also grateful to the Reviewers for their substantial effort spent for evaluating our work. \\
 
@@ -104,7 +104,13 @@ in this paper. \\
 In the Introduction part, the authors should clarify what type of synchronization they care. There are two types of synchronization of RFID communication: syn. between reader and tag; syn. among multiple tags. The COTS RFID devices exploit the EPC C1G2 standard, which uses framed slotted Aloha protocol to query tags. We found that the tag reading performance is very well. Hence, I think the synchronization among tags is not a big problem that hinder RFID communication. Hence, this study is not well motivated a least currently.}
 
 \response{
-	Please also see \hyperref[R1:2]{[R1:2]} and \hyperref[R1:4]{[R1:4]}.
+We thank the reviewer for pointing this issue that led us to emphasize our motivation in the revised article. As indicated by the reviewer, framed slotted Aloha protocol performs a notion of synchronization: by adjusting offset and introducing guard times, tags are ensured to communicate at allocated frame boundaries. However, 
+\begin{itemize}
+	\item this method does not output a synchronized clock value that can be accessed by the tags to timestamp and make inferences about the collected information;
+	\item since a clock is not maintained, more sophisticated applications cannot be enabled.
+\end{itemize}
+
+In order to enable sensor network-like data collection applications, tags should maintain an explicit clock that represents synchronized notion of time so that they can  collect, timestamp and store data which will be be queried later by the readers. However, due to frequent power failures and marginal energy budgets of these devices, providing explicit clock synchronization and maintaining a clock value is challenging---please also see our responses \hyperref[R1:2]{[R1:2]} and \hyperref[R1:4]{[R1:4]}. We mentioned all these points in our revised article.
 }
 
 \referee{Also, there are another view to classify the synchronization problems: slot level synchronization (time frame is divided into slots) or bit level synchronization. Slot level synchronization has been studied for decades and is well addressed. The bit-level synchronization is not well investigated yet and attracts much attention from academic communities, e.g., the following three references. The authors should discuss and clarify whether they study the bit-level synchronization mentioned in these references. \\

@@ -103,13 +103,14 @@ in the name of all Authors---Dr. Przemys{\l}aw Pawe{\l}czak
 \referee{In the Introduction part, the authors should clarify what type of synchronization they care. There are two types of synchronization of RFID communication: syn. between reader and tag; syn. among multiple tags. The COTS RFID devices exploit the EPC C1G2 standard, which uses framed slotted Aloha protocol to query tags. We found that the tag reading performance is very well. Hence, I think the synchronization among tags is not a big problem that hinder RFID communication. Hence, this study is not well motivated a least currently.}
 
 \response{
-We thank the reviewer for pointing this issue that led us to emphasize our motivation in the revised article. As indicated by the reviewer, framed slotted Aloha protocol performs a notion of synchronization: by adjusting offset and introducing guard times, tags are ensured to communicate at allocated frame boundaries. However, 
+We thank the reviewer for pointing this issue that led us to emphasize our motivation in the revised article. As indicated by the reviewer, framed slotted Aloha protocol indeed performs a form of synchronization: by adjusting offset and introducing guard times, tags are ensured to communicate at the allocated frame boundaries. However, 
+
 \begin{itemize}
-	\item this method does not output a synchronized clock value that can be accessed by the tags to timestamp and make inferences about the collected information;
-	\item since a clock is not maintained, more sophisticated applications cannot be enabled.
+	\item this method \emph{does not output a synchronized clock value} that can be accessed by the tags to timestamp (and make inference about) the collected information, e.g. from the sensors attached to the CRFID;
+	\item in consequence, \emph{applications requiring time notion cannot be enabled}, since a clock is not maintained at the CRFID tags.
 \end{itemize}
 
-In order to enable sensor network-like data collection applications, tags should maintain an explicit clock that represents synchronized notion of time so that they can  collect, timestamp and store data which will be be queried later by the readers. However, due to frequent power failures and marginal energy budgets of these devices, providing explicit clock synchronization and maintaining a clock value is challenging---please also see our responses \hyperref[R1:2]{[R1:2]} and \hyperref[R1:4]{[R1:4]}. We mentioned all these points in our revised article.
+Unfortunately due to frequent power failures and marginal energy budgets of CRFIDs, providing explicit clock synchronization (that represents \emph{synchronized notion of time}) and maintaining this clock value is challenging. We have emphasized these points in our revised article in Section 1.1 and Section 2.1.3. We hope that with these answers we have motivated the need for our study sufficiently. We kindly refer the reviewer also to our responses \hyperref[R1:2]{[R1:2]} and \hyperref[R1:4]{[R1:4]}. \textcolor{red}{Add clarification on the difference between clock synchronization with Aloha and our study in Section 1.1. and 2.1.3}
 }
 
 \referee{Also, there are another view to classify the synchronization problems: slot level synchronization (time frame is divided into slots) or bit level synchronization. Slot level synchronization has been studied for decades and is well addressed. The bit-level synchronization is not well investigated yet and attracts much attention from academic communities, e.g., the following three references. The authors should discuss and clarify whether they study the bit-level synchronization mentioned in these references.

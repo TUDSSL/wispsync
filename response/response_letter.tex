@@ -156,30 +156,14 @@ As we indicated in our previous responses (see \hyperref[R1:1]{[R1:1]} and \hype
 
 \begin{responses}
 	
-\referee{In this paper, the authors study the time synchronization problem in low-power backscatter systems, i.e., WISP. They point out the unique challenges in designing time synchronization algorithms for these energy-harvesting tags, and propose two synchronization protocols in response to these challenges. The proposed protocol is compatible with the default reader-to-tag communication protocol and consumes an ignorable amount of energy. The authors evaluate their proposed protocols through real-world experiments. \\
-\\
-+: an interesting problem which has not been explored before. \\
-+: the proposed protocols are simple yet look effective. \\
-+: evaluating the proposed protocols with real-world experiments; \\
-\\		
--: the motivation behind is not well explained; \\
--: not sure the proposed protocol will work in large-scale deployment. \\
-\\
-My major concern about this paper is its motivation: I do agree with the authors that the time synchronization is important to the multi-hop backscatter networks, but I don’t think it is necessary for the single-hop network like the WISP networks. The ALOHA-type protocol has already synchronized the tags in nature. 
+\referee{My major concern about this paper is its motivation: I do agree with the authors that the time synchronization is important to the multi-hop backscatter networks, but I don’t think it is necessary for the single-hop network like the WISP networks. The ALOHA-type protocol has already synchronized the tags in nature.}
+	
+\response{In our revised article, we provided a better motivation and highlighted the novelty of our work. In our earlier response to the same questions raised by reviewer 1---please refer to \hyperref[R1:1]{[R1:1]} and \hyperref[R1:2]{[R1:2]}---we mentioned that ALOHA-type protocol does not maintain an explicit clock value and does not implement a real synchronization algorithm. On the contrary, we provided novel synchronization mechanisms that enables tags to access synchronized time---this also enables sensor network-like data collection applications where tags collect and timestamp sensor readings that can be queried by the readers later. However, maintaining an explicit clock and ensuring synchronization is not trivial due to the marginal energy budgets of the tags and frequent power failures. These are the main challenges of our work and our novelty over the existing studies.}
+	
+\referee{I’m not sure synchronizing tags through the command initiated by the excitation generator (e.g., RFID reader) is feasible in real-world applications. This is because these energy-harvesting sensors can be charged within a very short range. Hence if the sensors are deployed sparsely, multiple excitation generators are needed, and it is thus important to synchronize these excitation generators as well. However, the authors did not consider this point.
 }
 	
-\response{ 
- The concern of this reviewer has been shared by also Reviewer 1. In our revised article, we provided a better motivation and highlighted the novelty of our work better.  \\
- In the previous responses---please also see \hyperref[R1:1]{[R1:1]} and \hyperref[R1:2]{[R1:2]}---we mentioned that ALOHA-type protocol does not maintain an explicit clock value and does not implement a real synchronization algorithm. On the contrary, we provided novel synchronization mechanisms that enables tags to access synchronized time---this also enables sensor network-like data collection applications where tags collect and timestamp sensor readings that can be queried by the readers later. However, maintaining an explicit clock and ensuring synchronization is not trivial due to the marginal energy budgets of the tags and frequent power failures. These are the main challenges of our work and its novelty over existing studies. 
-}
-	
-\referee{I’m not sure synchronizing tags through the command initiated by the 
-excitation generator (e.g., RFID reader) is feasible in real-world applications. This is because these energy-harvesting sensors can be charged within a very short range. Hence if the sensors are deployed sparsely, multiple excitation generators are needed, and it is thus important to synchronize these excitation generators as well. However, the authors did not consider this point.
-}
-	
-\response{
-We thank the reviewer for raising this issue. We already answered this concern in the previous responses---please also see \hyperref[R1:3]{[R1:3]}. We would like to mention that there are already prior work that provides synchronization among the readers. Therefore, we can also employ these strategies in order to create a common time notion among the readers. In order to provide an explicit synchronized clock value to the WISP tags, an explicit reader-tag synchronization algorithm is required---which is the focus of our work.
-}
+\response{We thank the reviewer for raising this issue. We already answered this concern in the previous responses---please also see \hyperref[R1:3]{[R1:3]}. We would like to mention that there are already prior work that provides synchronization among the readers. Therefore, we can also employ these strategies in order to create a common time notion among the readers. In order to provide an explicit synchronized clock value to the WISP tags, an explicit reader-tag synchronization algorithm is required---which is the focus of our work.}
 	
 \referee{Some questions about the technical parts: \\
 1): the authors claim that the fluctuating input voltage prevents short-term stability of the clock hardware and introduces significant clock drift in WISP. However, as far as I know, WISP uses a regulator to supply a constant 1.8\,V DC to power the WISP.}

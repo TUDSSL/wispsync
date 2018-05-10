@@ -139,17 +139,17 @@ We would like to emphasize that none of these issues have been addressed and stu
 \response{
 As we indicated in the introduction of the article (Section 1) there are already existing synchronization techniques that provide synchronization among RFID readers. Therefore, if there are multiple readers that cover multiple WISP tags, first the readers should be synchronize with each other and then the tags will be synchronized to the RFID readers. This approach will cause any danger to the protocol we designed. We mentioned this explicitly in Section 4 of our revised paper. \textcolor{red}{Add clarification about single reader synchronization}
 }
-
+	
 \referee{The novelty of this paper is relatively limited because the proposed event-based reader-tag synchronization method is originated from previous literature. Moreover, the main part of the theoretical analytics is also from previous work [24,31]. Although the authors claimed that they use a different clock drift model in this article, i.e. Brownian motion rather than uniform distribution, I still this significantly reduces the theoretical depth of this paper. The authors should show what NEW challenges beyond previous work are addressed by this paper. }
 
 \response{
-As we indicated in our previous responses (see \hyperref[R1:1]{[R1:1]} and \hyperref[R1:2]{[R1:2]}), our article has the following novelties over the existing work in the literature:
-\begin{itemize}
-	\item Bit-level synchronization does not compensate for clock drift and it does not provide explicit time notion to the tags. In order to output a synchronized clock value, a time synchronization algorithm is required.
-	\item Since the energy budget of the tags are limited, synchronization approaches that require marginal number of computation and memory. This is challenging---the main motivation for applying a PI-controller based synchronization for the first time in this domain.
-	\item Maintaining an explicit synchronized clock despite power failures has never been explored before in the field of CRFIDs. We also provided how our synchronization techniques overcome frequent power failures and provide a stable synchronized clock value.
-	\item  We also provided an in-depth theoretical analysis of the proposed synchronization techniques. As indicate by the reviewer, the main part of the analysis is from previous work. However, the previous analysis that assumes uniform distribution for the clock drifts was not realistic---the reason we changed the analysis to use Brownian motion. This modification did not change the proof structure but it significantly changed the individual steps of the proof---that led to different stead-state error expressions.
-\end{itemize}
+As we indicated in our previous responses (see \hyperref[R1:1]{[R1:1]} and \hyperref[R1:2]{[R1:2]}), our article has the following novelties over the previous results:
+\begin{enumerate}
+	\item \textbf{Difference with bit-level synchronization:} Bit-level synchronization does not compensate for clock drift and does not provide explicit time notion to the tags. In order to output a synchronized clock value, a time synchronization algorithm is required;
+	\item \textbf{Energy budget of synchronization algorithm:} Since the energy budget of the tags are limited, synchronization approaches require marginal number of computation and memory. This is challenging, which was our main motivation for applying a PI-controller based synchronization for the first time in this domain;
+	\item \textbf{Consideration of intermittent power supply:} Maintaining an explicit synchronized clock despite power failures has never been explored before in the field of CRFIDs. We also provided how our synchronization technique overcomes frequent power failures and provide a stable synchronized clock value;
+	\item \textbf{Novel theoretical consideration:} We also provided an in-depth theoretical analysis of the proposed synchronization techniques. As indicate by the reviewer, the main part of the analysis is indeed from previous work. However, the previous analysis that assumes uniform distribution for the clock drifts was not realistic---the reason we changed the analysis to use the Brownian motion. This modification did not change the proof structure but it significantly changed the individual steps of the proof---that led to \emph{different steady-state error expressions}.
+\end{enumerate}
 }
 
 \end{responses}
@@ -218,7 +218,7 @@ Our work applies to the case when several RFID readers cover large tag populatio
 \referee{The authors may consider to discuss a specific scenario that can use the proposed approach.}
 	
 \response{
-	We thank the reviewer for this comment that led us to provide a better motivation for our study. Already, in reply to comments \hyperref[R1:1]{[R1:1]} and \hyperref[R1:4]{[R1:4]}, we commented on cases where the proposed synchronization techniques can be used. In the introduction of the article, we depicted the case where several WISPs  are powered by a reader. In this scenario, the tags collaboratively timestamp their temperature readings. When the reader requests their temperature readings, the tags also transmit their timestamps together with the collected temperature data. In order to make inferences on the collected temperature readings, timestamps should be \emph{consistent} so that the reader can provide a temporal ordering of the readings. Therefore, tags require a common time notion to timestamp their readers---creating an demand for explicit time synchronization, which we address in our work.
+	We thank the reviewer for this comment that led us to provide a better motivation for our study. Already, in reply to comments \hyperref[R1:1]{[R1:1]} and \hyperref[R1:4]{[R1:4]}, we commented on cases where our proposed synchronization technique can be used. To recap our answer: in the introduction of our article, we depicted the case where several WISPs  are powered by a reader. In this scenario, the tags collaboratively timestamp their temperature readings. When the reader requests their temperature readings, the tags also transmit their timestamps together with the collected temperature data. In order to make inferences on the collected temperature readings, timestamps should be \emph{consistent} so that the reader can provide a temporal ordering of the readings. Therefore, tags require a common time notion to timestamp their readers---creating an demand for explicit time synchronization, which we address in our work.
 }
 
 \end{responses}

@@ -92,7 +92,14 @@ in the name of all Authors---Dr. Przemys{\l}aw Pawe{\l}czak
 \end{enumerate}
 }
 
-\response{Thank you once more for coordinating the review process of our paper. We hope that we have revised our article in accordance with the responses of the reviewers. We therefore believe we have addressed all three points that the Editor raised as accurately as possible. We request the Editor to refer to our respective responses below. \textcolor{red}{Add direct references where each of these three points has been addressed.}}
+\response{Thank you once more for coordinating the review process of our paper. We hope that we have revised our article in accordance with the responses of the reviewers. We therefore believe we have addressed all three points that the Editor raised as accurately as possible. Briefly, in the revised article:
+\begin{itemize}
+	\item We provided better a motivation in Section 1.1, we mentioned our contributions more clearly by also citing the related work suggested by Reviewer 1;
+	\item We addressed all of the technical details, especially the differences of our work from slot and bit-level synchronization in EPC Gen2 standard;
+	\item We solved the misunderstanding about multi-hop CRFID networks by clearly stating that these networks do not exist yet and the focus of our work is current of-the-shelf CRFID and reader platforms.
+\end{itemize}	
+	
+We request the Editor to refer to our respective responses below; in particular \hyperref[R1:1]{[R1:1]}, \hyperref[R1:2]{[R1:2]}, \hyperref[R1:3]{[R1:3]}, \hyperref[R2:1]{[R2:1]} and \hyperref[R3:2]{[R3:2]}. }
 
 \end{editor}
 
@@ -107,11 +114,11 @@ in the name of all Authors---Dr. Przemys{\l}aw Pawe{\l}czak
 	\item in consequence, \emph{applications requiring time notion cannot be enabled}, since a clock is not maintained at the CRFID tags.
 \end{itemize}
 
-Unfortunately due to frequent power failures and marginal energy budgets of CRFIDs, providing explicit clock synchronization (that represents \emph{synchronized notion of time}) and maintaining this clock value is challenging. We have emphasized these points in our revised article in Section 1.1 and Section 2.1.3. We hope that with these answers we have motivated the need for our study sufficiently. We kindly refer the reviewer also to our responses \hyperref[R1:2]{[R1:2]} and \hyperref[R1:4]{[R1:4]}. \textcolor{red}{Add clarification on the difference between clock synchronization with Aloha and our study in Section 1.1. and 2.1.3}}
+Unfortunately due to frequent power failures and marginal energy budgets of CRFIDs, providing explicit clock synchronization (that represents \emph{synchronized notion of time}) and maintaining this clock value is challenging. We have emphasized these points in our revised article in Section 1.1, 1.2 and Section 2.2. We hope that with these answers we have motivated the need for our study sufficiently. We kindly refer the reviewer also to our responses \hyperref[R1:2]{[R1:2]} and \hyperref[R1:4]{[R1:4]}.}
 
 \referee{Also, there are another view to classify the synchronization problems: slot level synchronization (time frame is divided into slots) or bit level synchronization. Slot level synchronization has been studied for decades and is well addressed. The bit-level synchronization is not well investigated yet and attracts much attention from academic communities, e.g., the following three references. The authors should discuss and clarify whether they study the bit-level synchronization mentioned in these references.}
 
-\response{We thank the reviewer for this comments and for pointing us to these relevant papers, which we cite in Section 2.1.3 of our revised work. Thanks to the comment of the reviewer we have noticed that in the previous version of our submission we did not highlighted the main difference between our work and the works pertaining to the \emph{bit-level synchronization}.
+\response{We thank the reviewer for this comments and for pointing us to these relevant papers, which we cite in Section 2.2.2 of our revised work. Thanks to the comment of the reviewer we have noticed that in the previous version of our submission we did not highlighted the main difference between our work and the works pertaining to the \emph{bit-level synchronization}.
 
 To clarify this difference: as indicated earlier by the reviewer, it is possible to exploit modulation properties of signals from the reader to the tags (such as bit timing in FM0 modulation) in order to get the timing measurements of the regular patterns in the signal, i.e. bit-level synchronization. However, the objective of our work has the following fundamental differences as compared to these studies:
 
@@ -125,11 +132,11 @@ To clarify this difference: as indicated earlier by the reviewer, it is possible
 	\item \textbf{Power Failures:} Providing synchronization service to the application layer requires to cope with power failures, which has not been investigated so far. To address this issue, we provided synchronization algorithms that can recover easily after power failures.
 \end{itemize}
 
-We would like to emphasize that none of these issues have been addressed and studied so far within the context of CRFIDs. The above discussion has been briefly added to Section 2.1.3. \textcolor{red}{Add brief extension on clock synchronization to Section 2.1.3; add references they list explicitly}}
+We would like to emphasize that none of these issues have been addressed and studied so far within the context of CRFIDs. The above discussion has been briefly added to Section 2.2.2.}
 
 \referee{What if WISP tags are simultaneously covered by multiple readers. In this case, the readers are not synchronized themselves and may have different time-stamps. Then, how does the proposed method work?}
 
-\response{As we indicated in the introduction of the article (Section 1) there are already existing synchronization techniques that provide synchronization among RFID readers. Therefore, if there are multiple readers that cover multiple WISP tags, first the readers should be synchronized with each other and then the tags will be synchronized to the RFID readers. This approach will cause any danger to the protocol we designed. We mentioned this explicitly in Section 4 of our revised paper. \textcolor{red}{Add clarification about single reader synchronization in Section 4}}
+\response{As we indicated in the introduction of the article (Section 1) there are already existing synchronization techniques that provide synchronization among RFID readers. Therefore, if there are multiple readers that cover multiple WISP tags, first the readers should be synchronized with each other and then the tags will be synchronized to the RFID readers. This approach will cause any danger to the protocol we designed. We mentioned this explicitly in Section 1.1 and 7.5 of our revised paper.}
 	
 \referee{The novelty of this paper is relatively limited because the proposed event-based reader-tag synchronization method is originated from previous literature. Moreover, the main part of the theoretical analytics is also from previous work [24,31]. Although the authors claimed that they use a different clock drift model in this article, i.e. Brownian motion rather than uniform distribution, I still this significantly reduces the theoretical depth of this paper. The authors should show what NEW challenges beyond previous work are addressed by this paper.}
 
@@ -167,17 +174,17 @@ We would like to emphasize that none of these issues have been addressed and stu
 
 \referee{It is better to simplify the descriptions of the challenges and existing works, especially some contents that are not directly related to the synchronization.}
 	
-\response{To address this comment of the reviewer, we have removed unnecessary description from Section 2 of our paper. At the same time, in this section we have provided a better motivation and listed novelties of our contribution in the context of new related work. \textcolor{red}{Compress text in Section 2}}
+\response{To address this comment of the reviewer, we simplified the descriptions in Section 2. At the same time, we listed novelties of our contribution in the context of new related work in Section 2.2.2  and in Section 1 we have provided a better motivation.}
 
 \referee{It is better to report some results or discuss the performance of the proposed approach in the multi-hop networks, since the authors highlights the advantages of multi-hop networks several times in the introduction.}
 	
 \response{We thank the reviewer for this comment. However, we feel that there has been a misunderstanding regarding the concept of backscatter (CRFID) multi-hop networks. As of now, CRFID tags cannot operate in a multi-hop manner since they can only communicate directly with the RFID readers. In the introduction of our article (Section 1.1), we only stated that we \emph{anticipate} that after enabling tag-to-tag backscatter communication, multi-hop CRFID networks will \emph{emerge} and therefore time synchronization will be more important. However, as of now, we do not have access to (nor we are not aware of) any network infrastructure to demonstrate neither multi-hop communication nor multi-hop synchronization. 
 
-Our work applies to the case when several RFID readers cover large tag population simultaneously. Then the whole network can be synchronized by first allowing RFID readers to access central reference time, e.g. using the Internet; then individual tags can be synchronized to the individual RFID readers. To clarify the connection of our work to the multi-hop networks, we have provided an extra clarifying sentence in Section 1.1. \textcolor{red}{Add a sentence on reader-network-tag synchronization in Section 1.1}}
+Our work applies to the case when several RFID readers cover large tag population simultaneously. Then the whole network can be synchronized by first allowing RFID readers to access central reference time, e.g. using the Internet; then individual tags can be synchronized to the individual RFID readers. To clarify the connection of our work to the multi-hop networks, we have provided an extra clarifying sentence in Section 1.1.}
 	
 \referee{The authors may consider to discuss a specific scenario that can use the proposed approach.}
 	
-\response{We thank the reviewer for this comment that led us to provide a better motivation for our study. Already, in reply to comments \hyperref[R1:1]{[R1:1]} and \hyperref[R1:4]{[R1:4]}, we commented on cases where our proposed synchronization technique can be used. To recap our answer: in the introduction of our article, we depicted the case where several WISPs  are powered by a reader. In this scenario, the tags collaboratively timestamp their temperature readings. When the reader requests their temperature readings, the tags also transmit their timestamps together with the collected temperature data. In order to make inferences on the collected temperature readings, timestamps should be \emph{consistent} so that the reader can provide a temporal ordering of the readings. Therefore, tags require a common time notion to timestamp their readers---creating an demand for explicit time synchronization, which we address in our work.}
+\response{We thank the reviewer for this comment that led us to provide a better motivation for our study. Already, in reply to comments \hyperref[R1:1]{[R1:1]} and \hyperref[R1:4]{[R1:4]}, we commented on cases where our proposed synchronization technique can be used. To recap our answer: in Section 1.1 of our article, we depicted a greenhouse monitoring scneario where several WISPs  are powered by two readers. In this scenario, the tags collaboratively timestamp their temperature readings. When the reader requests their temperature readings, the tags also transmit their timestamps together with the collected temperature data. In order to make inferences on the collected temperature readings, timestamps should be \emph{consistent} so that any reader can provide a temporal ordering of the readings. Therefore, tags require a common time notion to timestamp their readers---creating an demand for explicit time synchronization, which we address in our work.}
 
 \end{responses}
 

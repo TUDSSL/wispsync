@@ -80,7 +80,7 @@ With this letter we provide our response to all comments of the reviewers and th
 
 With best regards, \\
 
-in the name of all Authors---Dr. Przemys{\l}aw Pawe{\l}czak
+in the name of all authors---Dr. Przemys{\l}aw Pawe{\l}czak
 
 \pagebreak
 
@@ -124,7 +124,7 @@ Unfortunately due to frequent power failures and marginal energy budgets of CRFI
 To clarify this difference: as indicated earlier by the reviewer, it is possible to exploit modulation properties of signals from the reader to the tags (such as bit timing in FM0 modulation) in order to get the timing measurements of the regular patterns in the signal, i.e. bit-level synchronization. However, the objective of our work has the following fundamental differences as compared to these studies:
 
 \begin{itemize}
-	\item \textbf{Portability:} Bit-level synchronization relies on high-precision clock to obtain microsecond-precision timing measurements. Despite, in our work, we used the external 32\,kHz clock that can run in low-power standby mode and the \emph{higher-level} commands of the EPC Gen2 standard, rather than exploiting its low-level signal properties. Therefore, our approach is independent of how EPC Gen2 is implemented---providing a level of portability across different platforms. However, our synchronization algorithms can also be integrated into the bit-level synchronization;
+	\item \textbf{Portability:} Bit-level synchronization relies on a high-precision clock to obtain microsecond-precision timing measurements. However, rather than exploiting low-level signal properties, in our work we rely on (i) external 32\,kHz clock that can run in low-power standby mode and (ii) the \emph{higher-level} commands of the EPC Gen2 standard. Therefore, our approach is independent of how EPC Gen2 is implemented---providing a level of portability across different platforms. We emphasize that our synchronization algorithms can also be integrated into the bit-level synchronization;
 	
 	\item \textbf{Explicit Clock:} Bit-level synchronization does not output an explicit clock value and it does not compensate for the clock drift. Rather, it uses offset compensation only and \emph{guard time} to reduce the effect of the clock drift. On the contrary, we provided time synchronization algorithms that compensate for the clock drift and provide an \emph{explicit} common time notion to CRFID applications;
 	

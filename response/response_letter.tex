@@ -130,14 +130,14 @@ To clarify this difference: as indicated earlier by the reviewer, it is possible
 	
 	\item \textbf{Energy Budget:} Due to marginal energy budgets, we proposed synchronization algorithms that require minimum number of computation steps and memory space;
 	
-	\item \textbf{Power Failures:} Providing synchronization service to the application layer requires to cope with power failures, which has not been investigated so far. To address this issue, we provided synchronization algorithms that can recover easily after power failures.
+	\item \textbf{Power Failures:} Providing synchronization service to the application layer requires coping with power failures, which has not been investigated so far. To address this issue, we provided synchronization algorithms that can recover easily after power failures.
 \end{itemize}
 
 We would like to emphasize that none of these issues have been addressed and studied so far within the context of CRFIDs. Again, the above discussion has been briefly added to Section 2.2.2.}
 
 \referee{What if WISP tags are simultaneously covered by multiple readers. In this case, the readers are not synchronized themselves and may have different time-stamps. Then, how does the proposed method work?}
 
-\response{As we indicated in the introduction of the article (Section 1) there are already existing synchronization techniques that provide synchronization among RFID readers. Therefore, if there are multiple readers that cover multiple WISP tags, first the readers should be synchronized with each other and then the tags will be synchronized to the RFID readers. This approach will cause any danger to the protocol we designed. We mentioned this explicitly in Section 1.1 and Section 7.5 of our revised paper.}
+\response{As we indicated in the introduction of the article (Section 1) there are already existing synchronization techniques that provide synchronization among RFID readers. Therefore, if there are multiple readers that cover multiple WISP tags, first the readers should be synchronized with each other and then the tags will be synchronized to the RFID readers. This approach will not cause any danger to the protocol we designed. We mentioned this explicitly in Section 1.1 and Section 7.5 of our revised paper.}
 	
 \referee{The novelty of this paper is relatively limited because the proposed event-based reader-tag synchronization method is originated from previous literature. Moreover, the main part of the theoretical analytics is also from previous work [24,31]. Although the authors claimed that they use a different clock drift model in this article, i.e. Brownian motion rather than uniform distribution, I still this significantly reduces the theoretical depth of this paper. The authors should show what NEW challenges beyond previous work are addressed by this paper.}
 

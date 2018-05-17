@@ -1,0 +1,324 @@
+\documentclass[10pt,journal,compsoc]{IEEEtran}
+
+\ifCLASSOPTIONcompsoc
+  % IEEE Computer Society needs nocompress option
+  % requires cite.sty v4.0 or later (November 2003)
+  \usepackage[nocompress]{cite}
+\else
+  % normal IEEE
+  \usepackage{cite}
+\fi
+
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+
+\newcommand{\expected}[1]{E\!\left\llbracket #1 \right\rrbracket}
+
+\addtocounter{equation}{7}
+
+
+\begin{document}
+
+\title{On the Synchronization of Computational RFIDs}
+
+\author{Kas{\i}m~Sinan~Y{\i}ld{\i}r{\i}m, 
+	Henko~Aantjes, 
+	Przemys{\l}a~Pawe{\l}czak~\IEEEmembership{Member,~IEEE,} 
+	and~Amjad~Yousef~Majid
+	%
+	\IEEEcompsocitemizethanks{
+		%\IEEEcompsocthanksitem A preliminary version of this article was presented at the HLPC 2016 Workshop, Atlanta, GA, USA, April 2, 2016~\cite{hlpc2016}. \protect\\
+		\IEEEcompsocthanksitem The authors are with the Embedded Software Group, Delft University of Technology, Mekelweg 4, 2628 CD Delft, The Netherlands (e-mail: \{k.s.yildirim, p.pawelczak, a.y.majid\}@tudelft.nl, h.aantjes@student.tudelft.nl).
+	}
+%	\thanks{Manuscript received April 19, 2005; revised August 26, 2015.}
+}
+
+\maketitle
+
+\IEEEdisplaynontitleabstractindextext
+
+\IEEEpeerreviewmaketitle
+
+
+\appendices
+\section{Analysis of Algorithm 1}
+
+We provide the synchronization conditions of Algorithm 1 and show that the synchronization will be established eventually. We need to mention that we follow similar calculation steps to the ones presented in the studies~\cite{pi2015,Yildirim:Gradient:2016}. However, since we use a different clock drift model in this article, i.e. Brownian motion rather than uniform distribution, the following  mathematical analysis is moderately different and more realistic as compared to those in the previous studies. 
+
+Since $f_w$ and $f_r$ are time varying, by following 
+\cite{Zhong:2011:On-demand,Huang:2013:PSR}, we model the 
+\emph{evolution} 
+of $f_w^r$ as 
+integrated white noise, i.e. \emph{Brownian motion}, given as
+\begin{eqnarray}
+f_{w}^{r}(t_{0}+\delta) & \triangleq & 
+f_{w}^{r}(t_{0})+\int_{t_{0}}^{t_{0}+\delta}\eta(t)dt.\label{eq:drift}
+\end{eqnarray}
+Here, $\delta$ denotes the amount of time after $t_0$ and $\eta(t)$ denotes 
+the instantaneous change on the relative clock frequency, namely 
+\emph{relative drift rate} at time $t$. We assume that 
+$\eta(t)\sim\mathcal{N}(0,\sigma_{\eta}^{2})$ and for all 
+time instants $t'$ and $t''$, $\eta(t')$ and $\eta(t'')$ are uncorrelated 
+random variables. In order to ease the calculations in the following sections, 
+we will consider the \emph{average relative clock frequency} in an interval of 
+interest $[t_0,t_0+\delta]$ rather than instantaneous relative frequency 
+in~\eqref{eq:drift}. We denote this value by $\bar{f}_{r}^{w}(t_0,t_0+\delta)$ 
+and define it as 
+\begin{eqnarray}
+\bar{f}_{w}^{r}(t_0,t_0\!+\!\delta) &\!\!\!\!\! \triangleq\!\!\!\!\! & 
+\frac{1}{\delta}\!\!\int_{t_0}^{t_0+\delta}\!\!\!\!\!\!\!\!\!\!\!\! 
+f_w^r(t)dt \triangleq
+f_{w}^{r}(t_{0})\!+\!\frac{1}{\delta}\!\!\int_{0}^{\delta}\!\!\int_{t_{0}}^{t_{0}+t}\!\!\!\!\!\!\!\!\!\!\!\eta(u)dudt.
+\label{eq:drift_relation}
+\end{eqnarray}
+
+
+\subsection{Proof of Convergence}
+Consider (5) and without loss of 
+generality we assume that 
+$C_{w}(t_{1})-C_{w}(t_{0})=\tau(1+\bar{f}_{w}^{r}(t_0,t_1))+\varepsilon$
+where $\tau$ denotes the event period and $\varepsilon$ accounts for the 
+uncertainty of the event period (as 
+indicated in Section 6.1). For ease of 
+calculations we assume that $\varepsilon\sim\mathcal{N}(0,\sigma^2_{\tau})$. 
+Define \emph{relative frequency estimation error} as
+\begin{eqnarray}
+\tilde{f}_{w}^{r}(t_0) & \triangleq & 
+f_{w}^{r}(t_0)-\hat{f}_{w}^{r}(t_0).\label{eq:relative_drift_estimation_error}
+\end{eqnarray}
+Using (5), \eqref{eq:drift_relation} and 
+\eqref{eq:relative_drift_estimation_error} we get:
+\begin{eqnarray}
+\gamma(t_1) & = & 
+\tau(\bar{f}_{w}^{r}(t_0,t_1)-\hat{f}_{w}^{r}(t_0))+ \varepsilon \nonumber \\
+&=&  
+\tau\tilde{f}_{w}^{r}(t_0)+\frac{\tau}{t_1-t_0}\int_{0}^{t_1-t_0}\!\!\!\int_{t_{0}}^{t_0+t}\!\!\!\!\!\!\!\!\!\!\!\eta(u)dudt
++ \varepsilon.
+\end{eqnarray}
+For ease of representation, let us introduce the following 
+notation:
+\begin{eqnarray}
+\Phi(h) &\triangleq& \int_{t_h}^{t_{h+1}}\eta(t)dt, \\
+\Omega(h) &\triangleq& 
+\frac{\tau}{t_{h+1}-t_h}\int_{0}^{t_{h+1}-t_h}\int_{t_{h}}^{t_h+t}\eta(u)dudt,
+\\
+\Delta(h) &\triangleq& \tilde{f}_{w}^{r}(t_{h}). \label{eq:delta}
+\end{eqnarray}
+Using this notation, we denote $\gamma(t_{h+1})$ by $\Theta(h+1)$ as
+\begin{eqnarray}
+\Theta(h+1) &\triangleq& \gamma(t_{h+1})=\tau\Delta(h) + \Omega(h)+\varepsilon. 
+\label{eq:theta}
+\end{eqnarray}
+Moreover, since $\Delta(h)$, $\Omega(h)$ and $\varepsilon$ are 
+independent random variables, we can write $\Delta(h+1)$ as
+\begin{eqnarray}
+\Delta(h+1) &\overset{\eqref{eq:delta}}{=}& 
+\Delta(h)+\tilde{f}_{w}^{r}(t_{h+1})-\tilde{f}_{w}^{r}(t_{h}) \nonumber \\
+&\overset{\eqref{eq:relative_drift_estimation_error}}{=}& \Delta(h)
+\!+\!f_w^r(\!t_{h+1}\!)\!-\!\!f_w^r(\!t_{h}\!) \!-\!\!\hat{f}_w^r(\!t_{h+1}\!)\!+\!\!\hat{f}_w^r(\!t_{h}\!)
+\nonumber\\
+&\overset{(6),\eqref{eq:drift}}{=}& 
+\Delta(h)+\int_{t_h}^{t_{h+1}}\eta(t)dt-\beta\Theta(h+1) \nonumber \\
+&\overset{\eqref{eq:theta}}{=}& 
+(1-\beta\tau)\Delta(h)-\beta(\Omega(h)+\varepsilon) +\Phi(h). 
+\label{eq:delta_recursive}
+\end{eqnarray} 
+Considering \eqref{eq:theta} and \eqref{eq:delta_recursive}, we can write the 
+system evolution as
+\begin{eqnarray}
+\underset{X(h+1)}{
+	\underbrace{
+		\left[\!\!\!\begin{array}{c}
+		\Theta(h\!+\!1)\\
+		\Delta(h\!+\!1)
+		\end{array}\!\!\!\right]
+	}
+} &\!\!\!\!\!\!\! =\!\!\!\!\!\!\! & 
+\underset{A}{
+	\underbrace{
+		\left[\!\!\!\begin{array}{cc}
+		0 & \tau\\
+		0 & 1\!-\!\beta\tau
+		\end{array}\!\!\!\right]
+	}
+}
+\underset{X(h)}{
+	\underbrace{
+		\left[\!\!\!\begin{array}{c}
+		\Theta(\!h\!)\\
+		\Delta(\!h\!)
+		\end{array}\!\!\!\right]}
+}
+\!\!+\!\!
+\underset{Y(h)}{
+	\underbrace{
+		\left[\!\!\!\begin{array}{c}
+		\Omega(h)+\varepsilon\\
+		\Phi(\!h\!)\!-\!\beta(\Omega(\!h\!)\!+\!\varepsilon)
+		\end{array}\!\!\!\right]}
+}.\label{eq:state_space-pi}
+\end{eqnarray}
+Taking the expectation of both sides of \eqref{eq:state_space-pi} yields 
+$\expected{X(h+1)} = A\expected{X(h)}$ since 
+the means of the random variables in the matrix $Y(h)$ are all zero. According 
+to stability of linear systems \cite{book-luenberger}, \emph{asymptotic 
+	convergence} will be reached if and only if the magnitudes of the 
+eigenvalues of the matrix $A$ are strictly smaller than one. The eigenvalues 
+$\lambda_1$ and $\lambda_2$ of the matrix $A$ can be obtained 
+by solving
+\begin{eqnarray}
+\left|\begin{array}{cc}
+-\lambda & \tau\\
+0 & 1-\beta\tau-\lambda
+\end{array}\right|=0 &\implies& 
+\begin{array}{c}
+\lambda_1 = 0,\\
+\lambda_2 = 1-\beta\tau.  
+\end{array}\label{eq:eigens}
+\end{eqnarray}
+Therefore, the synchronization will be  established if 
+and only if $|\lambda_1,\lambda_2|<1$, and in turn
+\begin{align}
+0 & <\beta<\frac{2}{\tau}\label{eq:step_size_bounds-pi}
+\end{align}
+should hold. The 
+rate of convergence is governed by 
+the largest eigenvalue $\lambda_2$, which means that bigger values of $\beta$ 
+will lead to faster convergence. 
+Consequently, selecting $\beta$ within the bound above will lead the system  
+converge to the state  
+\begin{eqnarray}
+\underset{h\rightarrow\infty}{\lim}\expected{\Theta(h+1)} &=&
+\expected{\Theta(h)}, \label{eq:asymp_theta} \\
+\underset{h\rightarrow\infty}{\lim}\expected{\Delta(h+1)}&=&
+\expected{\Delta(h)} \label{eq:asymp_delta}.
+\end{eqnarray}
+Hence, due to asymptotic convergence
+\begin{eqnarray}
+\expected{\Delta(\infty)} \overset{\eqref{eq:delta_recursive}}{=} 
+\left(1-\beta 
+\tau\right)\expected{\Delta(\infty)} &\!\!\!\!\!\!\!\implies\!\!\!\!\!\!\!& \expected{\Delta(\infty)}\!=\!0, 
+\label{eq:delta_convergence}\\
+\expected{\Theta(\infty)}  \overset{\eqref{eq:theta}}{=} 
+\tau\expected{\Delta(\infty)}&\!\!\!\!\!\!\!\implies\!\!\!\!\!\!\!&\expected{\Theta(\infty)}\!=\!0. 
+\label{eq:expected_error}
+\end{eqnarray}
+Consequently, the prediction error $\Theta(h)=\gamma(t_h)$ 
+eventually converges to zero as $h$ goes to infinity. This means the WISP tag 
+will estimate the occurrence times of the successive
+events with zero error in expectation. 
+
+
+\subsection{Steady-State (Asymptotic) Synchronization Error}
+\label{sec:app_b}
+An analytical expression for the \emph{asyptotic 
+	synchronization error} can be obtained by calculating 
+$\underset{h\rightarrow \infty}{\lim}\mathrm{Var}(\Theta(h))$. This 
+calculation reduces to find 
+$\mathrm{Var}(\Theta(\infty))=\expected{\Theta(\infty)^2}$, since it holds 
+from 
+\eqref{eq:expected_error} that $\expected{\Theta(\infty)}=0$. Using 
+\eqref{eq:theta}, we 
+get
+\begin{eqnarray}
+\expected{\Theta(\infty)^2} &\!\!\!\!\overset{\eqref{eq:theta}}{=}\!\!\!\!& 
+\tau^2\expected{\Delta(\infty)^2}  
++\expected{(\Omega(h)+\varepsilon)^2},\label{eq:expected_theta_infinity}
+\end{eqnarray}
+since $\expected{\Delta(\infty)}=0$ from \eqref{eq:delta_convergence} and 
+$\Delta(h)$, $\Omega(h)$ and $\varepsilon$ are independent. 
+In order to calculate \eqref{eq:expected_theta_infinity}, let us derive first 
+$\expected{\Delta(\infty)^2}$ as
+\begin{eqnarray}
+\!\!\!\!\!\expected{\!\Delta(\!\infty\!)^2\!} 
+&\!\!\!\!\!\!\!\overset{\eqref{eq:delta_recursive},\eqref{eq:asymp_delta}}{=}\!\!\!\!\!\!& 
+(\!1\!\!-\!\!\beta\tau\!)^2\!	
+\expected{\!\Delta(\!\infty\!)^2}  
+\!\!+\!\!\expected{\!(\!\Phi(\!h\!)\!\!-\!\!\beta\!(\!\Omega(\!h\!)\!+\!\varepsilon\!)^2}\!. 
+\label{eq:expected_delta_infinity}
+\end{eqnarray}
+In order to calculate \eqref{eq:expected_delta_infinity}, the first step is to 
+obtain the following expectation:
+\begin{eqnarray}
+\expected{(\Phi(h)\!-\!\beta(\Omega(h)\!+\!\varepsilon)^2} 
+&\!\!\!\!=\!\!\!\!&
+\expected{(\Phi(h)^2}
+\!-\!2\beta\expected{\Phi(h)\Omega(h)} 
+\! \nonumber \\ 
+& & +\!\beta^2\expected{\Omega(h)^2}\!+\!\beta^2\expected{\varepsilon^2}. 
+\label{eq:stochastic_expectation}
+\end{eqnarray}
+The equality \eqref{eq:stochastic_expectation} holds due to the fact that 
+$\expected{\Phi(h)\varepsilon}=\expected{\Phi(h)}\expected{\varepsilon}=0$ and 
+$\expected{\varepsilon\Omega(h)}=\expected{\varepsilon}\expected{\Omega(h)}=0$ 
+(since 
+$\expected{\varepsilon}=\expected{\Phi(h)}=\expected{\Omega(h)}=0$ and 
+$\varepsilon$ is independent from $\Phi(h)$ and $\Omega(h)$). The
+following \emph{stochastic integrals} are required for 
+\eqref{eq:stochastic_expectation}:
+\begin{eqnarray}
+\expected{\Phi(h)^2}\!\!\!\!\!\!\! 
+& = & \!\!\!\!\!\!
+\int_{0}^{t_{h+1}-t_h}\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\sigma_{\eta}^{2}dt =  \sigma_{\eta}^{2}(t_{h+1}-t_h),\\
+\expected{\Omega(h)^2}\!\!\!\!\!\!\! 
+& = & \!\!\!\!\!\!
+\frac{\tau^2}{(t_{h+1}\!\!-\!\!t_h)^2}
+\sigma_{\eta}^{2}\!\!\!\int_{0}^{t_{h+1}-t_h}\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!t^2dt\! = \!
+\sigma_{\eta}^{2}\!\frac{\tau^2(\!t_{h+1}\!\!-\!\!t_h\!)}{3},\label{eq:stochastic_integral}\\
+\expected{\Phi(h)\Omega(h)}\!\!\!\!\!\!\! 
+& = & \!\!\!\!\!\!
+\frac{\tau}{t_{h+1}-t_h}\sigma_{\eta}^{2}\int_{0}^{t_{h+1}-t_h}\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!tdt = 
+\sigma_{\eta}^{2}\frac{\tau(\!t_{h+1}\!\!-\!\!t_h\!)}{2}, \\
+\expected{\varepsilon^2}\!\!\!\!\!\!\! 
+& = & \!\!\!\!\!\! 
+\sigma_{\tau}^{2}.
+\end{eqnarray}	
+The derivation of the expectations and stochastic integrals above relies on the 
+assumptions we mentioned 
+at the beginning of this Appendix: (i) $\eta(t')$ and $\eta(t'')$ are 
+uncorrelated for all $t'\neq t''$, therefore $\expected{\eta(t')\eta(t'')}=0$; 
+(ii) since $\expected{\eta(t')}=0$, therefore 
+$\expected{(\eta(t'))^2}=\mathrm{Var}(\eta(t'))=\sigma_{\eta}^2$. Putting these 
+expected 
+values into \eqref{eq:stochastic_expectation}, then in 
+turn into \eqref{eq:expected_delta_infinity} lead:
+\begin{eqnarray}
+\expected{\Delta(\infty)^2}\!\!\!\!\!\!
+& = &\!\!\!\!\!\!
+\frac{\sigma^2_{\eta}(t_{h+1}-t_h)\left(1-\beta\tau+\frac{\beta^2\tau^2}{3}\right)\!\!+\!\!\beta^2\sigma^2_{\tau}}{(2\beta\tau-\beta^2\tau^2)}.
+\label{eq:delta_infinity}
+\end{eqnarray}
+Finally, putting \eqref{eq:delta_infinity} into 
+\eqref{eq:expected_theta_infinity} 
+leads to
+\begin{eqnarray}
+\expected{\Theta(\infty)^2}\!\!\!\!\!\!\! & = & \!\!\!\!\!\!\!
+\frac{\sigma^2_{\eta}(t_{h+1}-t_h)\left(\tau^2
+	-\beta\tau^3-\frac{\beta^2\tau^4}{3}\right)
+	+\beta^2\sigma^2_{\tau}\tau^2}{(2\beta\tau-\beta^2\tau^2)} \nonumber \\ 
+\!\!\!\!\!\!\! &  & \!\!\!\!\!\!\!+ 
+\sigma^2_{\eta}\frac{\tau^2(t_{h+1}-t_h)}{3}+\sigma^2_{\tau}.
+\end{eqnarray}
+Without loss of generality, assume that $t_{h+1}-t_h\approxeq\tau$. Therefore, 
+the asymptotic estimation error of Algorithm 1 is given by
+\begin{eqnarray}
+Var\left(\underset{h\rightarrow\infty}{\gamma(t_h)}\right)\!\!\!\!\!\!\!& = &\!\!\!\!\!\! 
+\expected{\Theta(\infty)^2}\!\! = \!\!
+\frac{\sigma^2_{\eta}\left(\tau^2-\beta\tau^3
+	+\frac{\beta^2\tau^4}{3}\right)
+	+\beta^2\sigma^2_{\tau}\tau}{(2\beta-\beta^2\tau)} \nonumber \\
+\!\!\!\!\!\!\!& = &\!\!\!\!\!\!  +\frac{\sigma^2_{\eta}\tau^3}{3}
++  \sigma^2_{\tau}
+\end{eqnarray}
+which results in (7).
+
+
+\bibliographystyle{IEEEtran}
+\bibliography{IEEEabrv,references}
+
+\end{document}
+
+

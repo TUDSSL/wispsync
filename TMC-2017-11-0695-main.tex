@@ -18,7 +18,7 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{url}
-\usepackage{hyperref}
+%\usepackage{hyperref}
 \usepackage{stmaryrd}
 \usepackage{soul}
 \usepackage{cancel}
@@ -147,7 +147,7 @@ this article are:
 	\item Evaluations in our testbed show that an average synchronization error of approximately 1\,ms can be ensured among tags with an energy overhead of 1.85\,$\mu$J per synchronization round using this  primitive.
 \end{itemize}
 %
-We note that WISP-side implementations throughout the article are done using C and assembly language. All source codes and scripts used to generate the results in the article (including parsing, post-processing and measurement results) are available via~\href{https://goo.gl/RuWIZ2}{https://goo.gl/RuWIZ2}.
+We note that WISP-side implementations throughout the article are done using C and assembly language. All source codes and scripts used to generate the results in the article (including parsing, post-processing and measurement results) are available via~\url{https://goo.gl/RuWIZ2}.
 
 The remainder of this article is organized as follows. In Section~\ref{sec:Related-Work} we present the fundamental challenges of synchronizing IPDs. Section~\ref{sec:Clock_Hardware} presents the hardware, in particular clock system of the WISP platform briefly, while Section~\ref{sec:clock_model} provides the mathematical notation to be used throughout the article. In 
 Section~\ref{sec:sender_receiver} we propose a sender-receiver synchronization approach between an RFID reader and a single tag. Sections~\ref{sec:event_based} and~\ref{sec:eval-wispsync} present the WISP-Sync protocol and its evaluation in our testbed, respectively. We also present the synchronization of multiple tags in Section~\ref{sec:multi-wisp}. Finally, we provide our conclusions and future research directions in Section~\ref{sec:Conclusion}.  
@@ -384,12 +384,12 @@ where $\beta$ is the \emph{integral gain}. Assume that the uncertainty of the ev
 \gamma & \!\!\!\!\!\sim\!\!\!\!\! & \mathcal{N} \!\!\left(\!\!0,\sigma^2_\gamma\!\!=\!\!\frac{\sigma^2_{\eta}\!\left(\!\tau^2\!-\!\beta\tau^3\!+\!\frac{\beta^2\tau^4}{3}\!\right)\!\!+\!\!\beta^2\sigma^2_{\tau}\tau}{(2\beta-\beta^2\tau)}\!\!+\!\!\frac{\sigma^2_{\eta}\tau^3}{3}\!+\!\sigma^2_{\tau} \!\!\right),
 \label{eq:sync_performance}
 \end{eqnarray}
-which is derived in Section~\ref{sec:app_b} of the Appendix.
+which is derived in Section A.2 of the Appendix.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=\columnwidth]{figures/sim-theory.eps}
-	\caption{\label{fig:theory-vs-simulations} The plot of the cumulative distribution function (CDF) of $\gamma$ in \eqref{eq:sync_performance} and the CDF of the steady-state $\gamma$ obtained during numerical simulations of \eqref{eq:update_rule} (by implementing \eqref{eq:theta} and \eqref{eq:delta_recursive} in Appendix). We used $\tau=1$, $\beta= 0.0001$, $\sigma_{\tau}=0.00005$ and our plots depict the theoretical and simulation results with respect to $\sigma_\eta = 0.0002$ and $\sigma_\eta = 0.0008.$ It can be observed that \eqref{eq:sync_performance} is consistent with the simulations and bigger uncertainty leads to bigger synchronization error.}
+	\caption{\label{fig:theory-vs-simulations} The plot of the cumulative distribution function (CDF) of $\gamma$ in \eqref{eq:sync_performance} and the CDF of the steady-state $\gamma$ obtained during numerical simulations of \eqref{eq:update_rule} (by implementing (15) and (16) in Appendix). We used $\tau=1$, $\beta= 0.0001$, $\sigma_{\tau}=0.00005$ and our plots depict the theoretical and simulation results with respect to $\sigma_\eta = 0.0002$ and $\sigma_\eta = 0.0008.$ It can be observed that \eqref{eq:sync_performance} is consistent with the simulations and bigger uncertainty leads to bigger synchronization error.}
 \end{figure}
 In Fig.~\ref{fig:theory-vs-simulations}, we emphasize that our theoretical derivation in \eqref{eq:sync_performance} is consistent with the simulations of \eqref{eq:update_rule}. We refer again the reader to the Appendix for the detailed proofs of the convergence and the asymptotic estimation error. Moreover, in Section~\ref{sec:adaptibility}, we discuss the impact of the parameters $\tau$ and $\beta$ on the synchronization accuracy.
 
@@ -443,7 +443,7 @@ It can be observed that WISP-Sync employs only very simple arithmetic operations
 \begin{figure*}
 	\centering
 	\includegraphics[width=1.4\columnwidth]{figures/alpha-period-vs-variance.eps}
-	\caption{\label{fig:simulations} Numerical results showing the relations between event period, integral gain and the steady-state variance. First, we set $\sigma_{\tau}=0.4097$, $\sigma_\eta = 0.0008$, $\beta=1$ and plotted $\sigma^2_{\gamma}$ using different $\tau$ (left hand side). Observe that increasing $\tau$ increases $\sigma^2_{\gamma}$. Then, we set $\sigma_{\tau}=0.4097$,	$\tau=1$ and $\beta \in (0,2)$ due to \eqref{eq:step_size_bounds-pi}. Using different values for $\sigma_\eta$, we plotted how $\sigma^2_{\gamma}$ changes with respect to the $\beta$ (right hand side). Observe that for each value of $\sigma_\eta$, there is a particular $\beta$ that minimizes $\sigma^2_{\gamma}$.}
+	\caption{\label{fig:simulations} Numerical results showing the relations between event period, integral gain and the steady-state variance. First, we set $\sigma_{\tau}=0.4097$, $\sigma_\eta = 0.0008$, $\beta=1$ and plotted $\sigma^2_{\gamma}$ using different $\tau$ (left hand side). Observe that increasing $\tau$ increases $\sigma^2_{\gamma}$. Then, we set $\sigma_{\tau}=0.4097$,	$\tau=1$ and $\beta \in (0,2)$ due to (19). Using different values for $\sigma_\eta$, we plotted how $\sigma^2_{\gamma}$ changes with respect to the $\beta$ (right hand side). Observe that for each value of $\sigma_\eta$, there is a particular $\beta$ that minimizes $\sigma^2_{\gamma}$.}
 \end{figure*}
 
 In Section \ref{subsec:event_period_uncertainty} we presented our measurements pertaining to the event period and showed 
@@ -471,7 +471,7 @@ In order to evaluate WISP-Sync, we considered the value of $\gamma$ in Algorithm
 \end{figure}
 
 Since we measured the event period as 226.76\,ms on average (see Fig.~\ref{fig:block_write_delay}), we set $\tau=7086$ 
-clock ticks since the local clock of the tag is operating at 32\,kHz and each clock tick occurs every 32 microseconds. First, we explored how $\beta$ affects the performance of the algorithm. By substituting $\tau$ into \eqref{eq:step_size_bounds-pi}, the convergence condition becomes $0<\beta<0.000284$ in our case. We present the synchronization error with different $\beta$ values in Fig.~\ref{fig:beta}. Observe that the synchronization error tends to get smaller with smaller $\beta$ values but the convergence time increases negligibly. Moreover, due to the low-precision 32\,kHz clock, decreasing $\beta$ has no significant effect after some point. We mention that  in order to make WISP-Sync adapt faster, WISP-Sync can start with a big value of $\beta$ to converge fast and then decrease $\beta$ gradually to decrease the synchronization error, i.e. the adaptive strategy proposed in~\cite{pi2015}. However, from  Fig.~\ref{fig:beta}, we consider a fixed value of $\beta=0.0001$ for the next evaluation steps. 
+clock ticks since the local clock of the tag is operating at 32\,kHz and each clock tick occurs every 32 microseconds. First, we explored how $\beta$ affects the performance of the algorithm. By substituting $\tau$ into (19), the convergence condition becomes $0<\beta<0.000284$ in our case. We present the synchronization error with different $\beta$ values in Fig.~\ref{fig:beta}. Observe that the synchronization error tends to get smaller with smaller $\beta$ values but the convergence time increases negligibly. Moreover, due to the low-precision 32\,kHz clock, decreasing $\beta$ has no significant effect after some point. We mention that  in order to make WISP-Sync adapt faster, WISP-Sync can start with a big value of $\beta$ to converge fast and then decrease $\beta$ gradually to decrease the synchronization error, i.e. the adaptive strategy proposed in~\cite{pi2015}. However, from  Fig.~\ref{fig:beta}, we consider a fixed value of $\beta=0.0001$ for the next evaluation steps. 
 
 \subsection{Synchronization Performance}
 
@@ -586,7 +586,7 @@ In this article we explored synchronization scenarios between an RFID reader and
 \bibliographystyle{IEEEtran}
 \bibliography{IEEEabrv,references}
 
-\input{appendix_tmc}
+%\input{appendix_tmc}
 
 % biography section
 % 

@@ -35,6 +35,10 @@
 
 \setlength{\parindent}{0pt}
 
+%Count from three - ignore two other reviewers 
+\stepcounter{refereeCounter}
+\stepcounter{refereeCounter}
+
 \begin{document}
 
 \pagestyle{myheadings}
@@ -67,16 +71,15 @@ Phone: +31 15 278 7491\\
 \today
 \medskip
 
-
 \textbf{TMC-2017-11-0695.R1:} {\sl On the Synchronization of Computational RFIDs}
 
 \bigskip
 
 Dear Editor,\\
 
-We would like to thank for handling our submission and providing a rapid review results. We are also grateful to the reviewers for their substantial effort spent for evaluating our work. \\
+We would like to thank for handling our revised submission and providing a rapid review results. We are also once more grateful to the reviewers for their effort spent for evaluating our work. \\
 
-With this letter we provide our response to all comments of the reviewers and the revised version of our paper. We look forward to hearing from you at the earliest and we would be happy to provide further clarifications if necessary.
+With this letter we provide our response to the final comment, together with the revised version of our paper. We look forward to hearing from you at the earliest and we would be happy to provide further clarifications if necessary.
 
 With best regards, \\
 
@@ -85,36 +88,17 @@ in the name of all authors---Dr. Przemys{\l}aw Pawe{\l}czak
 \pagebreak
 
 \begin{editor}
-\referee{The authors need to go through a minor revision to address the concern raised by reviewer 3 about the motivation.
-}
+\referee{The authors need to go through a minor revision to address the concern raised by reviewer 3 about the motivation.}
 
-\response{Thank you once more for coordinating the review process of our paper. We believe that there is a misunderstanding that led to a concern raised by the reviewer 3. We addressed this concern in our responce \hyperref[R3:1]{[R3:1]}.
-}
+\response{Thank you once more for coordinating the review process of our paper. We have addressed the final concern of Reviewer 3 in our response given below.}
 
 \end{editor}
 
 \begin{responses}
- 
-\referee{Accept With No Changes.}
 
-\response{We are pleased to receive this decision and thank the reviewer for his/her time spent during the evaluation.}
-
-\end{responses}
-
-\begin{responses}
+\referee{While I'm satisfied with most of the responses, the motivation is still not clear to me. The authors claim that in greenhouse monitoring scenario, the nodes need to be synchronized for data reporting. Why does ALOHA not work here? I know the node did not provide timestamp in ALOHA protocol. However, the reader could rely on its own clock to determine the timestamp of each node access. You should pay more attention to this.}
 	
-\referee{Accept With No Changes.}
-
-
-\response{We are pleased to receive this decision and thank the reviewer for his/her time spent during the evaluation.}
-	
-\end{responses}
-
-\begin{responses}
-
-\referee{It's good to see the authors addressed my concerns. While I'm satisfied with most of the responses, the motivation is still not clear to me. The authors claim that in greenhouse monitoring scenario, the nodes need to be synchronized for data reporting. Why does ALOHA not work here? I know the node did not provide timestamp in ALOHA protocol. However, the reader could rely on its own clock to determine the timestamp of each node access. You should pay more attention to this.}
-	
-\response{As we indicated in Section 2.2.2 of our article, slotted ALOHA protocol in EPC Gen2 does not compensate for the clock drifts and output an explicit clock value that can be accessed by the tags. Therefore, while the nodes are collecting data and storing the data in their local buffers, they cannot timestamp the collected data using synchronized notion of time---they cannot obtain actual (value,timestamp) pairs. When the data is queried by the RFID reader, the local clock of the reader does not represent the actual data collection time. Therefore, the reader could not rely on its own clock to determine the timestamp values. Time synchronization is required for obtaining the data collection timestamps precisely---the tags access the synchronized time notion, obtain (data, timestamp) pairs and store these pairs in their local buffers; thereafter these values can be queried by the RFID reader at any time so that the temporal ordering if the received pairs can be performed. }
+\response{Thank you once more for giving us the opportunity to address this comment. As indicated in Section 2.2.2 of our submission, slotted ALOHA protocol in the EPC Gen2 does not compensate for the clock drifts and output an explicit clock value that can be accessed by the RFID tags. Therefore, while the nodes are collecting data and storing the data in their local buffers, they \emph{cannot timestamp} the collected data using synchronized notion of time---in other words, they cannot obtain actual \texttt{(value, timestamp)} pairs. When the data is queried by the RFID reader, the local clock of the reader does not represent the actual data collection time. Therefore, the reader could not rely on its own clock to determine the timestamp values. Time synchronization is required for obtaining the data collection timestamps precisely---the tags access the synchronized time notion, obtain \texttt{(value, timestamp)} pairs and store these pairs in their local buffers; thereafter these values can be queried by the RFID reader at any time so that the temporal ordering of the received pairs can be performed. }
 
 \end{responses}
 

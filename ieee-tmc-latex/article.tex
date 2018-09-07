@@ -147,7 +147,7 @@ this article are:
 	\item Our testbed evaluations show that an average synchronization error of approximately 1\,ms can be ensured among tags with an energy overhead of 1.85\,$\mu$J per synchronization round using this  primitive.
 \end{itemize}
 %
-We note that WISP-side implementations throughout the article are done using C and assembly language. All source codes and scripts used to generate the results in the article (including parsing, post-processing and measurement results) are available via~\url{https://goo.gl/aiqukc}.
+We note that WISP-side implementations throughout the article are done using C and assembly language. All source codes and scripts used to generate the results in the article (including parsing, post-processing and measurement results) are available via~\url{https://github.com/TUDSSL/wispsync}.
 
 The remainder of this article is organized as follows. In Section~\ref{sec:Related-Work} we present the fundamental challenges of synchronizing IPDs. Section~\ref{sec:Clock_Hardware} presents the hardware, in particular clock system of the WISP platform briefly, while Section~\ref{sec:clock_model} provides the mathematical notation to be used throughout the article. In 
 Section~\ref{sec:sender_receiver} we propose a sender-receiver synchronization approach between an RFID reader and a single tag. Sections~\ref{sec:event_based} and~\ref{sec:eval-wispsync} present the WISP-Sync protocol and its evaluation in our testbed, respectively. We also present the synchronization of multiple tags in Section~\ref{sec:multi-wisp}. Finally, we provide our conclusions and future work in Section~\ref{sec:Conclusion}.  
